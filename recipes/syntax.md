@@ -2,6 +2,7 @@
 description: >-
   For documentation on legacy recipe syntaxes (i.e. v1 and v2, please reach out
   to support@devzero.io)
+
 ---
 
 # Recipe Syntax
@@ -286,7 +287,7 @@ config:
 
 ### Code clone credentials
 
-We already discussed default code clone credentials in the [secrets section](recipe-syntax.md#repository-access).
+We already discussed default code clone credentials in the [secrets section](syntax.md#repository-access).
 
 ### Volumes
 

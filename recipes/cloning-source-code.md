@@ -22,7 +22,7 @@ build:
 
 <summary>Advanced Methods of Code Cloning</summary>
 
-This usually applies to cases where you need to use secrets to clone code. To learn more about how to save and use secrets: [broken-reference](broken-reference/ "mention")
+This usually applies to cases where you need to use secrets to clone code. To learn more about how to save and use secrets: [Secrets](./../environment-variables/secrets.md)
 
 You can use a [`command`](syntax.md#command) block to clone code directly:
 
@@ -36,13 +36,13 @@ dev:
       name: clone public repo
 
     - command: |-
-        # MY_PERSONAL_TOKEN is the key for a secret/environment variable saved at https://www.devzero.io/dashboard/settings/environment-variables#team
+        # MY_PERSONAL_TOKEN is the key for a secret/environment variable saved at https://www.devzero.io/dashboard/environment-variables/team
         git clone https://$MY_PERSONAL_TOKEN@github.com/vercel/next.js
       directory: /home/devzero
       name: clone private repo using PAT
 
      - command: |-
-        # MY_PRIVATE_KEY is the key for secret/environment variable saved at https://www.devzero.io/dashboard/settings/environment-variables#team
+        # MY_PRIVATE_KEY is the key for secret/environment variable saved at https://www.devzero.io/dashboard/environment-variables/team
         # The value for that should be the private key part of what you saved as a deploy key: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys
 
         mkdir -p .ssh
@@ -72,15 +72,15 @@ Some of the use cases where this is applicable:
 
 <summary>Accessing Code From Bitbucket</summary>
 
-#### Step 1. Go to your repo page on the Bitbucket website
+## Step 1. Go to your repo page on the Bitbucket website
 
 <img src="../.gitbook/assets/bitbucket-repo.png" alt="Bitbucket Repo" data-size="original">
 
-#### Step 2. Go to the `Access Keys` section
+## Step 2. Go to the `Access Keys` section
 
 <img src="../.gitbook/assets/bitbucket-access-keys.png" alt="Bitbucket Access Keys" data-size="original">
 
-#### Step 3(a). Generate keys
+## Step 3(a). Generate keys
 
 {% code %}
 ```
@@ -88,7 +88,7 @@ ssh-keygen -t ed25519 -C "devzero-user@my-website.com" -f devzero_id25519 -P '' 
 ```
 {% endcode %}
 
-#### Step 3(b). Add the public key to your Bitbucket repo's access keys
+## Step 3(b). Add the public key to your Bitbucket repo's access keys
 
 First, copy the public key
 
@@ -102,7 +102,7 @@ Then, paste it in the `Key` section in the pop-up box.
 
 <img src="../.gitbook/assets/bitbucket-add-access-key.png" alt="Bitbucket Add Access Keys" data-size="original">
 
-#### Step 3(c). Add the private key to DevZero
+## Step 3(c). Add the private key to DevZero
 
 Check the private key
 
@@ -116,13 +116,13 @@ cat ~/.ssh/devzero_id25519 | pbcopy
 ```
 {% endcode %}
 
-Then paste it into your team's secrets section at [https://www.devzero.io/dashboard/settings/environment-variables#team](https://www.devzero.io/dashboard/settings/environment-variables#team)
+Then paste it into your team's secrets section at [https://www.devzero.io/dashboard/environment-variables/team](https://www.devzero.io/dashboard/environment-variables/team)
 
-Call it `BITBUCKET_PVT_KEY` (or whatever you please, but this is referenced in [`Step 4`](code.md#step-4.-build-a-recipe))
+Call it `BITBUCKET_PVT_KEY` (or whatever you please, but this is referenced in Step 4)
 
 <img src="../.gitbook/assets/bitbucket-pvt-key-dz.png" alt="Add private key to DevZero" data-size="original">
 
-#### Step 4. Build a recipe
+## Step 4. Build a recipe
 
 Create a recipe and add a block that looks like the one below (check `line 5` to ensure naming).
 
@@ -141,7 +141,7 @@ dev:
 ```
 {% endcode %}
 
-#### Step 5. Launch a workspace from that recipe
+## Step 5. Launch a workspace from that recipe
 
 Visit your recipes pages here [https://www.devzero.io/dashboard/recipes](https://www.devzero.io/dashboard/recipes), and launch a workspace from that new recipe!
 
